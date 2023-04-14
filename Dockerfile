@@ -12,4 +12,4 @@ RUN apk add jq git curl bash
 COPY *.sh .
 ENV GIT_SSH=/app/myssh.sh
 
-ENTRYPOINT run.sh
+ENTRYPOINT ./run.sh
