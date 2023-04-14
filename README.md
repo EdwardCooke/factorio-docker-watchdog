@@ -1,22 +1,23 @@
 # Factorio watchdog for release changes
 
-Build trigger for factorio on new releases
+Build trigger for my version of the factorio image on new releases
 
 ## Enviroment variables
 
-Factorio Docker Watchdog must be configured via environment variables.
+This Factorio Docker Watchdog must be configured via environment variables.
 Below you find a list with all required and optional variables.
 
 ### Required
 
-- **GIT_EMAIL**: Email used by git for committing
-- **GIT_NAME**: Username used by git for committing
-- **GITHUB_USER**: GitHub Username used for api calls, git pull and push
-- **GITHUB_TOKEN**: GitHub token used for api calls, git pull and push
-- **GITHUB_REPO_OWNER**: GitHub Username/Organization where to push to
-- **GITHUB_REPO_NAME**: GitHub Repository where to push to
+| Name | Purpose |
+|-|-|
+| `GIT_ORG` | The git organization on github containing the repository |
+| `GIT_REPO` | The repository in the github org to commit the versions to |
+| `GIT_BRANCH` | The branch in the github repository to commit the versions to |
+| `GIT_SSHFILE` | The path the ssh identity file to communicate with GitHub |
 
 ### Optional
 
-- **DISCORD_WEBHOOK_URL**: Discord webhook url for announcements
-- **VERSION_FIX**: If the watchdog fails cause the repository is already on the latest version set this variable to the latest version
+| Name | Purpose |
+|-|-|
+| `FORCE` | Force an image rebuild |

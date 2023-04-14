@@ -1,15 +1,14 @@
-FROM golang:1.17-alpine AS build
-WORKDIR /go/src/github.com/factoriotools/factorio-docker-watchdog
-RUN apk add --no-cache --no-progress g++ git
-COPY . .
-RUN go get ./... && \
-  go build -a -installsuffix cgo -o app .
+FROM alpine:1.17.0
 
-FROM alpine:3.10
-RUN adduser -D -u 678 watchdog && \
-  apk add --no-cache --no-progress git && \
-  mkdir /usr/watchdog && \
-  chown watchdog:watchdog /usr/watchdog
-USER watchdog
-COPY --from=build /go/src/github.com/factoriotools/factorio-docker-watchdog/app /app
-CMD ["/app"]
+
+ENV GIT_ORG=
+ENV GIT_REPO=
+ENV GIT_BRANCH=
+ENV GIT_SSHFILE=
+ENV FORCE=
+
+RUN apk add jq git curl bash
+WORKDIR /app
+COPY *.sh .
+
+ENTRYPOINT run.sh
